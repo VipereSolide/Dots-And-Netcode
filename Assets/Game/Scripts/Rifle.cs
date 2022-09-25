@@ -90,8 +90,6 @@ public class Rifle : MonoBehaviour
                 progressPercentage = 1;
             }
 
-            Debug.Log(progressPercentage);
-
             if (isAiming)
             {
                 curveValue = aimingInCurve.Evaluate(elapsedTime / aimingSpeed / progressPercentage);
