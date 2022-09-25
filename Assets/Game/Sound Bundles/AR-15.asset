@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be8be36776f2cc40adfb124f86af03a, type: 3}
+  m_Name: AR-15
+  m_EditorClassIdentifier: 
+  bundleName: AR-15
+  profiles:
+  - profileName: Fire
+    sounds:
+    - packName: First Fire
+      soundAssets:
+      - assetName: 01
+        clip: {fileID: 8300000, guid: 51cc898d3323b0f4496fe78fbcb44b4a, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 02
+        clip: {fileID: 8300000, guid: 60817723649fcac4bab9931738d11c74, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 03
+        clip: {fileID: 8300000, guid: c5d5217dceaf1274eb1b75d83c21a5d4, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 04
+        clip: {fileID: 8300000, guid: ce22efc550ed00a408f6aa57df1530e2, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 05
+        clip: {fileID: 8300000, guid: 4ebebc3c45e245c4eb2b104b86768b69, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 06
+        clip: {fileID: 8300000, guid: 6c61545a2b7ef3d49810457fa4cfd20b, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      playMode: 1
+    - packName: Fire PLR
+      soundAssets:
+      - assetName: 01
+        clip: {fileID: 8300000, guid: 3b18d242716cb8f45bd4a1101a041ef4, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 02
+        clip: {fileID: 8300000, guid: ebdd89a7f45766f4db45af910e57c62a, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 03
+        clip: {fileID: 8300000, guid: 54e5431aefe05f94e856ff9684354694, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 04
+        clip: {fileID: 8300000, guid: 90dc0e37a7da42c4a94b6c29d002159a, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 05
+        clip: {fileID: 8300000, guid: 4679a6e059834b445ae3631a66450f6b, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 06
+        clip: {fileID: 8300000, guid: ee968bbc48bf2074d84fd0688df4f1cd, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      playMode: 0
+    - packName: Mech
+      soundAssets:
+      - assetName: 01
+        clip: {fileID: 8300000, guid: 528f907f61698244c915f567137a56ed, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 02
+        clip: {fileID: 8300000, guid: 324974d6fc309ca43a36d28a10b323c7, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 03
+        clip: {fileID: 8300000, guid: efd32d59a47c9bd42a8246b1822d1190, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 04
+        clip: {fileID: 8300000, guid: 5aab2363f2f2fc342a28746279cdf8df, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 05
+        clip: {fileID: 8300000, guid: 0980a30e181d13442b8c808a47cb6740, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      - assetName: 06
+        clip: {fileID: 8300000, guid: bbcd5832e44cf974b84c574b432f254f, type: 3}
+        _volume: 100
+        minPitch: 0.9
+        maxPitch: 1.1
+      playMode: 0
