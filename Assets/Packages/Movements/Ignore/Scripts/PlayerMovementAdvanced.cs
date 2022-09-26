@@ -129,7 +129,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void MyInput()
     {
         // when to jump
-        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded)
+        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded && !crouching)
         {
             Jump();
 
@@ -137,7 +137,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // start crouch
-        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch))
+        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch) && state != MovementState.sprinting)
         {
             bool wasGrounded = grounded;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
