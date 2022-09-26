@@ -17,8 +17,9 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
     public UnityEvent<CustomKeyCode> onValueChanged;
 
     private bool isListening;
+    private bool nextClickSuppressor;
 
-    private List<char> capsAlphabet = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    private List<char> capsAlphabet = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     public void Null()
     {
@@ -43,16 +44,37 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
     {
         string keyText = heldKey.ToString();
 
+        if (heldKey == CustomKeyCode.Mouse0) keyText = "LMB";
+        if (heldKey == CustomKeyCode.Mouse1) keyText = "RMB";
+        if (heldKey == CustomKeyCode.MouseWheelUp) keyText = "ScrollUp";
+        if (heldKey == CustomKeyCode.MouseWheelDown) keyText = "ScrollDown";
+        if (heldKey == CustomKeyCode.LeftControl || heldKey == CustomKeyCode.RightControl) keyText = "Control";
+        if (heldKey == CustomKeyCode.LeftAlt || heldKey == CustomKeyCode.RightAlt) keyText = "Alt";
+        if (heldKey == CustomKeyCode.LeftShift || heldKey == CustomKeyCode.RightShift) keyText = "Shift";
+        
+        keyText = keyText.Replace("Alpha","");
+
         int addedLetters = 0;
         string newText = keyText;
 
         for(int i = 0; i < keyText.Length; i++)
         {
             // if key is a caps and not the first letter
-            if (capsAlphabet.Contains(keyText[i]) && i > 0)
+            if (i < keyText.Length - 1)
             {
-                newText = newText.Insert(i + addedLetters, " ");
-                addedLetters++;
+                if (capsAlphabet.Contains(keyText[i]) && i > 0 && !capsAlphabet.Contains(keyText[i + 1]))
+                {
+                    newText = newText.Insert(i + addedLetters, " ");
+                    addedLetters++;
+                }
+            }
+            else
+            {
+                if (capsAlphabet.Contains(keyText[i]) && i > 0 && !capsAlphabet.Contains(keyText[i - 1]))
+                {
+                    newText = newText.Insert(i + addedLetters, " ");
+                    addedLetters++;
+                }
             }
         }
 
@@ -65,6 +87,7 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
     {
         if (isListening)
         {
+            nextClickSuppressor = true;
             selectedKeyText.text = "...";
 
             foreach (string keyName in System.Enum.GetNames(typeof(CustomKeyCode)))
@@ -75,19 +98,21 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
                 {
                     if (key == heldKey)
                     {
-                        isListening = false;
                         UpdateDisplay();
-                        return;
+                        isListening = false;
+                        break;
                     }
 
                     if (key == CustomKeyCode.Escape || key == CustomKeyCode.Delete)
                     {
                         Null();
+                        isListening = false;
                         break;
                     }
 
                     SetKey(key);
                     isListening = false;
+
                     break;
                 }
             }
@@ -114,6 +139,12 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (nextClickSuppressor)
+        {
+            nextClickSuppressor = false;
+            return;
+        }
+
         isListening = true;
     }
 }

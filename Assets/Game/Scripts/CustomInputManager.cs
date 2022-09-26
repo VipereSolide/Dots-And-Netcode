@@ -10,14 +10,13 @@ public static class CustomInputManager
         {
             return Input.GetAxisRaw("Mouse ScrollWheel") > 0;
         }
-        else if (keycode == CustomKeyCode.MouseWheelDown)
+        
+        if (keycode == CustomKeyCode.MouseWheelDown)
         {
             return Input.GetAxisRaw("Mouse ScrollWheel") < 0;
         }
-        else
-        {
+        
             return Input.GetKey(ToNormal(keycode));
-        }
     }
 
     public static bool GetKeyDown(CustomKeyCode keycode)
@@ -26,14 +25,13 @@ public static class CustomInputManager
         {
             return Input.GetAxisRaw("Mouse ScrollWheel") > 0;
         }
-        else if (keycode == CustomKeyCode.MouseWheelDown)
+        
+        if (keycode == CustomKeyCode.MouseWheelDown)
         {
             return Input.GetAxisRaw("Mouse ScrollWheel") < 0;
         }
-        else
-        {
+        
             return Input.GetKeyDown(ToNormal(keycode));
-        }
     }
 
     public static bool GetKeyUp(CustomKeyCode keycode)

@@ -27,8 +27,8 @@ public static class KeycodeManager
 }
 public enum CustomKeyCode
 {
-    MouseWheelDown,
-    MouseWheelUp,
+    MouseWheelDown = 510,
+    MouseWheelUp = 511,
     None = 0,
     Backspace = 8,
     Delete = 0x7F,
