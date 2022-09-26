@@ -54,7 +54,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public PlayerInputs inputs;
     public Transform orientation;
 
-    Vector3 moveDirection;
+    [HideInInspector] public Vector3 moveDirection;
 
     Rigidbody rb;
 
@@ -129,7 +129,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void MyInput()
     {
         // when to jump
-        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded && !crouching)
+        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded && !crouching && !restricted && !sliding)
         {
             Jump();
 
@@ -137,7 +137,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // start crouch
-        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch) && state != MovementState.sprinting)
+        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch) && state != MovementState.sprinting && !restricted)
         {
             bool wasGrounded = grounded;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -199,16 +199,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else if (sliding)
         {
             state = MovementState.sliding;
-
-            // increase speed by one every second
-            if (OnSlope() && rb.velocity.y < 0.1f)
-            {
-                desiredMoveSpeed = slideSpeed;
-                keepMomentum = true;
-            }
-
-            else
-                desiredMoveSpeed = sprintSpeed;
         }
 
         // Mode - Crouching
@@ -334,7 +324,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             // limit velocity if needed
-            if (flatVel.magnitude > moveSpeed)
+            if (flatVel.magnitude > (grounded ? moveSpeed : moveSpeed + maxAirSpeed))
             {
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
