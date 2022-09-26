@@ -7,6 +7,8 @@ public class Rifle : MonoBehaviour
     [SerializeField] private SoundBundle weaponSounds;
     
     [Header("Shooting")]
+    [SerializeField] private CameraManager cameraManager;
+    [SerializeField] private float cameraRecoil;
     [SerializeField] private CameraShake shaker;
     [SerializeField] private float cameraShake;
     [SerializeField] private string soundBundleProfileName;
@@ -112,10 +114,10 @@ public class Rifle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) Aim(true);
-        else if (Input.GetKeyUp(KeyCode.Space)) Aim(false);
+        if (Input.GetKeyDown(KeycodeManager.aim)) Aim(true);
+        else if (Input.GetKeyUp(KeycodeManager.aim)) Aim(false);
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeycodeManager.run))
         {
             leftArm.localRotation = Quaternion.Slerp(leftArm.localRotation, Quaternion.Euler(leftArmRotation), Time.deltaTime * leftArmRotationSpeed);
 
@@ -138,7 +140,7 @@ public class Rifle : MonoBehaviour
         positionRecoilTransform.localPosition = Vector3.Lerp(positionRecoilTransform.localPosition, Vector3.zero, Time.deltaTime * gunStrength);
         rotationRecoilTransform.localRotation = Quaternion.Slerp(rotationRecoilTransform.localRotation, Quaternion.identity, Time.deltaTime * gunStrength);
 
-        if (Input.GetKey(KeyCode.Mouse0) && Time.unscaledTime > nextTimeToFire)
+        if (Input.GetKey(KeycodeManager.fire) && Time.unscaledTime > nextTimeToFire)
         {
             nextTimeToFire = Time.unscaledTime + 60f / bulletPerMinute;
             positionRecoilTransform.localPosition = -positionRecoilTransform.forward * backwardForce * (shotBullets == 0 ? firstShotRecoilMultiplier : 1);
@@ -161,9 +163,10 @@ public class Rifle : MonoBehaviour
             Instantiate(muzzleFlash, muzzleSpot.transform.position, muzzleSpot.transform.rotation);
 
             shaker.PlayShake(cameraShake);
+            cameraManager.AddRecoil(cameraRecoil);
             shotBullets++;
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0)) shotBullets = 0;
+        if (Input.GetKeyUp(KeycodeManager.fire)) shotBullets = 0;
     }
 }

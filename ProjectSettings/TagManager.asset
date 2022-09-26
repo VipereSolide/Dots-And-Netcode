@@ -8,6 +8,7 @@ TagManager:
   - Target
   - Boundary
   - Floor
+  - Ledge
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Weapons
   - Post-Processing
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 
