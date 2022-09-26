@@ -30,8 +30,8 @@ public class SwingingDone : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeycodeManager.swingingGrapple)) StartSwing();
-        if (Input.GetKeyUp(KeycodeManager.swingingGrapple)) StopSwing();
+        if (CustomInputManager.GetKeyDown(KeycodeManager.swingingGrapple)) StartSwing();
+        if (CustomInputManager.GetKeyUp(KeycodeManager.swingingGrapple)) StopSwing();
 
         CheckForSwingPoints();
 
@@ -121,15 +121,15 @@ public class SwingingDone : MonoBehaviour
     private void OdmGearMovement()
     {
         // right
-        if (Input.GetKey(KeycodeManager.right)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.right)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
         // left
-        if (Input.GetKey(KeycodeManager.left)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.left)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
         // forward
-        if (Input.GetKey(KeycodeManager.forward)) rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.forward)) rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
         // backward
-        /// if (Input.GetKey(KeyCode.S)) rb.AddForce(-orientation.forward * forwardThrustForce * Time.deltaTime);
+        /// if (CustomInputManager.GetKey(KeyCode.S)) rb.AddForce(-orientation.forward * forwardThrustForce * Time.deltaTime);
         // shorten cable
-        if (Input.GetKey(KeycodeManager.shortenGrapplingCable))
+        if (CustomInputManager.GetKey(KeycodeManager.shortenGrapplingCable))
         {
             Vector3 directionToPoint = swingPoint - transform.position;
             rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
@@ -140,7 +140,7 @@ public class SwingingDone : MonoBehaviour
             joint.minDistance = distanceFromPoint * 0.25f;
         }
         // extend cable
-        if (Input.GetKey(KeycodeManager.extendGrapplingCable))
+        if (CustomInputManager.GetKey(KeycodeManager.extendGrapplingCable))
         {
             float extendedDistanceFromPoint = Vector3.Distance(transform.position, swingPoint) + extendCableSpeed;
 

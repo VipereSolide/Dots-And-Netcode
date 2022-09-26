@@ -76,7 +76,7 @@ public class PlayerVault : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeycodeManager.jump))
+        if (CustomInputManager.GetKey(KeycodeManager.mantle))
         {
             CalculateVaultSpot();
 

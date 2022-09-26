@@ -31,7 +31,7 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeycodeManager.precisionGrapple)) StartGrapple();
+        if (CustomInputManager.GetKeyDown(KeycodeManager.precisionGrapple)) StartGrapple();
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;

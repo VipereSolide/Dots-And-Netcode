@@ -19,14 +19,14 @@ public class PlayerInputs : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeycodeManager.right)) horizontalInput = 1;
-        if (Input.GetKey(KeycodeManager.left)) horizontalInput = -1;
-        if ((Input.GetKey(KeycodeManager.left) && Input.GetKey(KeycodeManager.right)) || (!Input.GetKey(KeycodeManager.left) && !Input.GetKey(KeycodeManager.right)))
+        if (CustomInputManager.GetKey(KeycodeManager.right)) horizontalInput = 1;
+        if (CustomInputManager.GetKey(KeycodeManager.left)) horizontalInput = -1;
+        if ((CustomInputManager.GetKey(KeycodeManager.left) && CustomInputManager.GetKey(KeycodeManager.right)) || (!CustomInputManager.GetKey(KeycodeManager.left) && !CustomInputManager.GetKey(KeycodeManager.right)))
             horizontalInput = 0;
 
-        if (Input.GetKey(KeycodeManager.forward)) verticalInput = 1;
-        if (Input.GetKey(KeycodeManager.backward)) verticalInput = -1;
-        if ((Input.GetKey(KeycodeManager.backward) && Input.GetKey(KeycodeManager.forward)) || (!Input.GetKey(KeycodeManager.backward) && !Input.GetKey(KeycodeManager.forward)))
+        if (CustomInputManager.GetKey(KeycodeManager.forward)) verticalInput = 1;
+        if (CustomInputManager.GetKey(KeycodeManager.backward)) verticalInput = -1;
+        if ((CustomInputManager.GetKey(KeycodeManager.backward) && CustomInputManager.GetKey(KeycodeManager.forward)) || (!CustomInputManager.GetKey(KeycodeManager.backward) && !CustomInputManager.GetKey(KeycodeManager.forward)))
             verticalInput = 0;
     }
 }

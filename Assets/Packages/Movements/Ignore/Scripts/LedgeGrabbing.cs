@@ -56,7 +56,7 @@ public class LedgeGrabbing : MonoBehaviour
 
             if (timeOnLedge > minTimeOnLedge && inputs.isMoving) ExitLedgeHold();
 
-            if (Input.GetKeyDown(KeycodeManager.jump)) LedgeJump();
+            if (CustomInputManager.GetKeyDown(KeycodeManager.jump)) LedgeJump();
         }
 
         // Substate 2 - Exiting Ledge

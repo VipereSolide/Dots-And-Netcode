@@ -102,7 +102,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     private void MyInput()
     {
         // when to jump
-        if (Input.GetKey(KeycodeManager.jump) && readyToJump && grounded)
+        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -112,14 +112,14 @@ public class PlayerMovementGrappling : MonoBehaviour
         }
 
         // start crouch
-        if (Input.GetKeyDown(KeycodeManager.crouch))
+        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
         // stop crouch
-        if (Input.GetKeyUp(KeycodeManager.crouch))
+        if (CustomInputManager.GetKeyUp(KeycodeManager.crouch))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
@@ -154,14 +154,14 @@ public class PlayerMovementGrappling : MonoBehaviour
         }
 
         // Mode - Crouching
-        else if (Input.GetKey(KeycodeManager.crouch))
+        else if (CustomInputManager.GetKey(KeycodeManager.crouch))
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
         }
 
         // Mode - Sprinting
-        else if (grounded && Input.GetKey(KeycodeManager.run))
+        else if (grounded && CustomInputManager.GetKey(KeycodeManager.run))
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;

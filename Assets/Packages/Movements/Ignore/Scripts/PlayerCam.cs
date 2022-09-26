@@ -9,6 +9,8 @@ public class PlayerCam : MonoBehaviour
     public float sensY;
     public float multiplier;
 
+    public bool freeze;
+
     public Transform orientation;
     public Transform camHolder;
 
@@ -25,14 +27,11 @@ public class PlayerCam : MonoBehaviour
     public float minFov;
     public float maxFov;
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void Update()
     {
+        if (freeze)
+            return;
+
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensY;

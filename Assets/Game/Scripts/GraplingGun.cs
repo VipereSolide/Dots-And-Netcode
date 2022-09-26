@@ -26,8 +26,8 @@ public class GraplingGun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeycodeManager.fire)) StartSwing();    
-        if (Input.GetKeyUp(KeycodeManager.fire)) StopSwing();
+        if (CustomInputManager.GetKeyDown(KeycodeManager.fire)) StartSwing();    
+        if (CustomInputManager.GetKeyUp(KeycodeManager.fire)) StopSwing();
 
         DrawRope();
         OnGrapplingMovement();
@@ -70,18 +70,18 @@ public class GraplingGun : MonoBehaviour
     {
         if (!grappling) return;
 
-        if (Input.GetKey(KeycodeManager.right)) rb.AddForce(orientation.right * horizontalForce * Time.deltaTime);
-        if (Input.GetKey(KeycodeManager.left)) rb.AddForce(-orientation.right * horizontalForce * Time.deltaTime);
-        if (Input.GetKey(KeycodeManager.forward)) rb.AddForce(orientation.forward * forwardForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.right)) rb.AddForce(orientation.right * horizontalForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.left)) rb.AddForce(-orientation.right * horizontalForce * Time.deltaTime);
+        if (CustomInputManager.GetKey(KeycodeManager.forward)) rb.AddForce(orientation.forward * forwardForce * Time.deltaTime);
 
-        if (Input.GetKey(KeycodeManager.jump))
+        if (CustomInputManager.GetKey(KeycodeManager.jump))
         {
             Vector3 directionToPoint = swingPoint - transform.position;
             rb.AddForce(directionToPoint.normalized * forwardForce * extendCableSpeed * Time.deltaTime);
             RecalculateJointDistance();
         }
 
-        if (Input.GetKey(KeycodeManager.backward))
+        if (CustomInputManager.GetKey(KeycodeManager.backward))
         {
             float distanceFromPoint = Vector3.Distance(player.position, swingPoint) * extendCableSpeed;
 

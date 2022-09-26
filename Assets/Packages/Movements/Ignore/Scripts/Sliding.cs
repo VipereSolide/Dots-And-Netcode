@@ -33,10 +33,10 @@ public class Sliding : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeycodeManager.slide) && inputs.isMoving)
+        if (CustomInputManager.GetKey(KeycodeManager.slide) && inputs.isMoving)
             StartSlide();
 
-        if (Input.GetKeyUp(KeycodeManager.slide) && pm.sliding)
+        if (CustomInputManager.GetKey(KeycodeManager.slide) && pm.sliding)
             StopSlide();
     }
 

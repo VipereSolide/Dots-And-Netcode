@@ -37,7 +37,7 @@ public class Movements : MonoBehaviour
 
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.22f, groundMask);
 
-        if (Input.GetKeyDown(KeycodeManager.jump) && isGrounded)
+        if (CustomInputManager.GetKeyDown(KeycodeManager.jump) && isGrounded)
         {
             Jump();
         }
@@ -87,17 +87,17 @@ public class Movements : MonoBehaviour
 
     private void GetInputs()
     {
-        if (Input.GetKey(KeycodeManager.forward)) inputZ = Mathf.Lerp(inputZ, 1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
-        if (Input.GetKey(KeycodeManager.backward)) inputZ = Mathf.Lerp(inputZ, -1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
-        if ((Input.GetKey(KeycodeManager.forward) && Input.GetKey(KeycodeManager.backward)) || (!Input.GetKey(KeycodeManager.forward) && !Input.GetKey(KeycodeManager.backward)))
+        if (CustomInputManager.GetKey(KeycodeManager.forward)) inputZ = Mathf.Lerp(inputZ, 1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
+        if (CustomInputManager.GetKey(KeycodeManager.backward)) inputZ = Mathf.Lerp(inputZ, -1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
+        if ((CustomInputManager.GetKey(KeycodeManager.forward) && CustomInputManager.GetKey(KeycodeManager.backward)) || (!CustomInputManager.GetKey(KeycodeManager.forward) && !CustomInputManager.GetKey(KeycodeManager.backward)))
             inputZ = Mathf.Lerp(inputZ, 0, Time.deltaTime * KeycodeManager.inputLerpSpeed);
 
-        if (Input.GetKey(KeycodeManager.right)) inputX = Mathf.Lerp(inputX, 1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
-        if (Input.GetKey(KeycodeManager.left)) inputX = Mathf.Lerp(inputX, -1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
-        if ((Input.GetKey(KeycodeManager.right) && Input.GetKey(KeycodeManager.left)) || (!Input.GetKey(KeycodeManager.right) && !Input.GetKey(KeycodeManager.left)))
+        if (CustomInputManager.GetKey(KeycodeManager.right)) inputX = Mathf.Lerp(inputX, 1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
+        if (CustomInputManager.GetKey(KeycodeManager.left)) inputX = Mathf.Lerp(inputX, -1, Time.deltaTime * KeycodeManager.inputLerpSpeed);
+        if ((CustomInputManager.GetKey(KeycodeManager.right) && CustomInputManager.GetKey(KeycodeManager.left)) || (!CustomInputManager.GetKey(KeycodeManager.right) && !CustomInputManager.GetKey(KeycodeManager.left)))
             inputX = Mathf.Lerp(inputX, 0, Time.deltaTime * KeycodeManager.inputLerpSpeed);
 
-        isRunning = Input.GetKey(KeycodeManager.run);
+        isRunning = CustomInputManager.GetKey(KeycodeManager.run);
     }
 
     public float GetCurrentSpeed()

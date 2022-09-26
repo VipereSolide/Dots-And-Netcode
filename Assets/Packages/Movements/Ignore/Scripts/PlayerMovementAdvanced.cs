@@ -129,7 +129,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void MyInput()
     {
         // when to jump
-        if (Input.GetKey(KeycodeManager.jump) && readyToJump && grounded)
+        if (CustomInputManager.GetKey(KeycodeManager.jump) && readyToJump && grounded)
         {
             Jump();
 
@@ -137,7 +137,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // start crouch
-        if (Input.GetKeyDown(KeycodeManager.crouch))
+        if (CustomInputManager.GetKeyDown(KeycodeManager.crouch))
         {
             bool wasGrounded = grounded;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -147,7 +147,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // stop crouch
-        if (Input.GetKeyUp(KeycodeManager.crouch))
+        if (CustomInputManager.GetKeyUp(KeycodeManager.crouch))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
 
@@ -221,7 +221,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Sprinting
-        else if (grounded && Input.GetKey(KeycodeManager.run))
+        else if (grounded && CustomInputManager.GetKey(KeycodeManager.run))
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;

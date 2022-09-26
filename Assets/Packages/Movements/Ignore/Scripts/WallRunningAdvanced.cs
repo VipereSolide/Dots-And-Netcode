@@ -76,8 +76,8 @@ public class WallRunningAdvanced : MonoBehaviour
     private void StateMachine()
     {
         // Getting Inputs
-        upwardsRunning = Input.GetKey(KeycodeManager.wallrunUpwards);
-        downwardsRunning = Input.GetKey(KeycodeManager.wallrunDownwards);
+        upwardsRunning = CustomInputManager.GetKey(KeycodeManager.wallrunUpwards);
+        downwardsRunning = CustomInputManager.GetKey(KeycodeManager.wallrunDownwards);
 
         // State 1 - Wallrunning
         if((wallLeft || wallRight) && inputs.DirectionInput.y > 0 && AboveGround() && !exitingWall)
@@ -96,7 +96,7 @@ public class WallRunningAdvanced : MonoBehaviour
             }
 
             // wall jump
-            if (Input.GetKeyDown(KeycodeManager.jump)) WallJump();
+            if (CustomInputManager.GetKeyDown(KeycodeManager.jump)) WallJump();
         }
 
         // State 2 - Exiting

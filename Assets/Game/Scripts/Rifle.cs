@@ -114,10 +114,10 @@ public class Rifle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeycodeManager.aim)) Aim(true);
-        else if (Input.GetKeyUp(KeycodeManager.aim)) Aim(false);
+        if (CustomInputManager.GetKeyDown(KeycodeManager.aim)) Aim(true);
+        else if (CustomInputManager.GetKeyUp(KeycodeManager.aim)) Aim(false);
 
-        if (Input.GetKey(KeycodeManager.run))
+        if (CustomInputManager.GetKey(KeycodeManager.run))
         {
             leftArm.localRotation = Quaternion.Slerp(leftArm.localRotation, Quaternion.Euler(leftArmRotation), Time.deltaTime * leftArmRotationSpeed);
 
@@ -140,7 +140,7 @@ public class Rifle : MonoBehaviour
         positionRecoilTransform.localPosition = Vector3.Lerp(positionRecoilTransform.localPosition, Vector3.zero, Time.deltaTime * gunStrength);
         rotationRecoilTransform.localRotation = Quaternion.Slerp(rotationRecoilTransform.localRotation, Quaternion.identity, Time.deltaTime * gunStrength);
 
-        if (Input.GetKey(KeycodeManager.fire) && Time.unscaledTime > nextTimeToFire)
+        if (CustomInputManager.GetKey(KeycodeManager.fire) && Time.unscaledTime > nextTimeToFire)
         {
             nextTimeToFire = Time.unscaledTime + 60f / bulletPerMinute;
             positionRecoilTransform.localPosition = -positionRecoilTransform.forward * backwardForce * (shotBullets == 0 ? firstShotRecoilMultiplier : 1);
@@ -167,6 +167,6 @@ public class Rifle : MonoBehaviour
             shotBullets++;
         }
 
-        if (Input.GetKeyUp(KeycodeManager.fire)) shotBullets = 0;
+        if (CustomInputManager.GetKeyUp(KeycodeManager.fire)) shotBullets = 0;
     }
 }
