@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class PlayerCam : MonoBehaviour
 {
-    public float sensX;
-    public float sensY;
     public float multiplier;
 
     public bool freeze;
@@ -33,8 +31,8 @@ public class PlayerCam : MonoBehaviour
             return;
 
         // get mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * sensY;
+        float mouseX = Input.GetAxisRaw("Mouse X") * KeycodeManager.sensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * KeycodeManager.sensitivity;
 
         yRotation += mouseX * multiplier;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -10,16 +11,21 @@ public class SliderValueToInputField : MonoBehaviour
     public TMP_InputField inputfield;
     public Slider slider;
 
+    [SerializeField]
+    public UnityEvent<float> onValueChanged;
+
     private void Start()
     {
-        inputfield.onValueChanged.AddListener(UpdateSlider);
         slider.onValueChanged.AddListener(UpdateInputField);
+
+        UpdateInputField(slider.value);
+        inputfield.onValueChanged.AddListener(UpdateSlider);
     }
 
     private void OnApplicationQuit()
     {
-        inputfield.onValueChanged.RemoveListener(UpdateSlider);
         slider.onValueChanged.RemoveListener(UpdateInputField);
+        inputfield.onValueChanged.RemoveListener(UpdateSlider);
     }
 
     private void UpdateInputField(float value)
@@ -27,6 +33,8 @@ public class SliderValueToInputField : MonoBehaviour
         float roundValue = Round(value, sliderValueMaxDigit);
         slider.value = roundValue;
         inputfield.text = roundValue.ToString();
+
+        onValueChanged.Invoke(roundValue);
     }
 
     private void UpdateSlider(string value)
@@ -40,6 +48,7 @@ public class SliderValueToInputField : MonoBehaviour
         }
 
         slider.value = parsed;
+        onValueChanged.Invoke(parsed);
     }
 
     public static float Round(float value, int digits)

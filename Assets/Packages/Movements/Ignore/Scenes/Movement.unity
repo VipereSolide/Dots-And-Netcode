@@ -9518,6 +9518,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6110090395585709220}
+        m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
+        m_MethodName: SetEscapeMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hoverEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -33171,6 +33183,9 @@ MonoBehaviour:
   sliderValueMaxDigit: 2
   inputfield: {fileID: 452954791}
   slider: {fileID: 1478706864}
+  onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!43 &944738000
 Mesh:
   m_ObjectHideFlags: 0
@@ -50095,6 +50110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7c68d999d1ce74e93a1846c824f36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivity: {fileID: 935257857}
   moveForward: {fileID: 1627683837}
   moveBackward: {fileID: 1753638845}
   moveLeft: {fileID: 847568369}
@@ -65899,8 +65915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeb9ff899020cf4bba0c367151844ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 4
-  sensY: 4
   multiplier: 1
   freeze: 0
   orientation: {fileID: 6110090396235209854}

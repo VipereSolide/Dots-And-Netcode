@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public SliderValueToInputField sensitivity;
     public KeySelector moveForward;
     public KeySelector moveBackward;
     public KeySelector moveLeft;
@@ -15,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
+        sensitivity.onValueChanged.AddListener((float f) => { KeycodeManager.sensitivity = f; });
         moveForward.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.forward = k; });
         moveBackward.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.backward = k; });
         moveLeft.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.left = k; });

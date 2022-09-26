@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class KeycodeManager
 {
+    public static float sensitivity = 2;
     public static CustomKeyCode fire = CustomKeyCode.Mouse0;
     public static CustomKeyCode aim = CustomKeyCode.Mouse1;
     public static CustomKeyCode forward = CustomKeyCode.Z;
