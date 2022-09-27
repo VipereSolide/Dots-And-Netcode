@@ -13,6 +13,7 @@ public class SettingsMenu : MonoBehaviour
     public KeySelector crouch;
     public KeySelector sprint;
     public KeySelector mantle;
+    public KeySelector slide;
 
     private void Start()
     {
@@ -25,5 +26,6 @@ public class SettingsMenu : MonoBehaviour
         crouch.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.crouch = k; });
         sprint.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.run = k; });
         mantle.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.mantle = k; });
+        slide.onValueChanged.AddListener((CustomKeyCode k) => { KeycodeManager.slide = k; });
     }
 }
