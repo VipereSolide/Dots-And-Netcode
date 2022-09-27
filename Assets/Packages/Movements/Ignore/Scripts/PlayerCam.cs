@@ -27,6 +27,8 @@ public class PlayerCam : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F10)) Screen.SetResolution(1920, 1080, Screen.fullScreen);
+
         if (freeze)
             return;
 

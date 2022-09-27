@@ -44,19 +44,6 @@ public class ResolutionSettings : MonoBehaviour
     private void OnHeightChanged(string value) { UpdateResolution(); }
     private void OnWidthChanged(string value) { UpdateResolution(); }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F10))
-        {
-            currentResolution.x = 1920;
-            currentResolution.y = 1080;
-
-            resolutionWidth.text = currentResolution.x.ToString();
-            resolutionHeight.text = currentResolution.y.ToString();
-            ApplyResolution();
-        }
-    }
-
     public void ApplyResolution()
     {
         Screen.SetResolution(currentResolution.x, currentResolution.y, Screen.fullScreen);
