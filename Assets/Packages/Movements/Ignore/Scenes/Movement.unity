@@ -50669,6 +50669,7 @@ MonoBehaviour:
   crouch: {fileID: 1074958327}
   sprint: {fileID: 1195913517}
   mantle: {fileID: 2146586922}
+  slide: {fileID: 1628566645}
 --- !u!1 &1492962785
 GameObject:
   m_ObjectHideFlags: 0
@@ -66649,7 +66650,7 @@ MonoBehaviour:
   rigidbody: {fileID: 6110090395553680922}
   inputs: {fileID: 6110090395553680924}
   shake: {fileID: 718457510}
-  slidingCameraPosition: 0.4
+  slidingPlayerHeight: 0.1
   cameraShakeAmount: 1.8
   cameraShakeCount: 2
   cameraShakeDelay: 0.01

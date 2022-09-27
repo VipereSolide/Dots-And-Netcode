@@ -10,7 +10,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float autoUcrouchOffset = 1.999f;
     public bool keepSpeedInAir;
     public float maxAirSpeed;
-    private float moveSpeed;
+    [HideInInspector] public float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
     public float walkSpeed;

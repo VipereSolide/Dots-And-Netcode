@@ -11,8 +11,8 @@ public class PlayerSlide : MonoBehaviour
     public PlayerInputs inputs;
     public CameraShake shake;
 
-    [Tooltip("The position of the camera when you're sliding.")]
-    public float slidingCameraPosition;
+    [Tooltip("The height of your player while mid slide.")]
+    public float slidingPlayerHeight;
     [Tooltip("How hard will sliding shake the camera.")]
     public float cameraShakeAmount;
     [Tooltip("How many shake will there be when sliding.")]
@@ -37,7 +37,10 @@ public class PlayerSlide : MonoBehaviour
 
     private void Update()
     {
-        if (CustomInputManager.GetKeyDown(KeycodeManager.slide) && canSlide && inputs.isMoving && movement.state != PlayerMovementAdvanced.MovementState.freeze && movement.state != PlayerMovementAdvanced.MovementState.air)
+        bool askForSlide = CustomInputManager.GetKeyDown(KeycodeManager.slide) && canSlide;
+        bool slideState = movement.moveSpeed >= movement.sprintSpeed - 1 && inputs.isMoving && movement.state != PlayerMovementAdvanced.MovementState.freeze && movement.state != PlayerMovementAdvanced.MovementState.air;
+        
+        if (askForSlide && slideState)
         {
             storedDirection = movement.moveDirection.normalized;
             StartSlide();
@@ -67,13 +70,15 @@ public class PlayerSlide : MonoBehaviour
     private void StopSlide()
     {
         isSliding = false;
-        canSlide = true;
+        canSlide = false;
 
         movement.sliding = false;
         movement.restricted = false;
 
         if (!movement.crouching) transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
         elapsedSlideTime = 0;
+
+        Invoke(nameof(ResetSlide), slideCooldown);
     }
 
     private void StartSlide()
@@ -86,9 +91,14 @@ public class PlayerSlide : MonoBehaviour
 
         shake.PlayShake(cameraShakeAmount, cameraShakeCount, cameraShakeDelay);
 
-        transform.localScale = new Vector3(transform.localScale.x, slidingCameraPosition, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, slidingPlayerHeight, transform.localScale.z);
         rigidbody.AddForce(Vector3.down * 4f, ForceMode.Impulse);
 
         elapsedSlideTime = slideDuration;
+    }
+
+    private void ResetSlide()
+    {
+        canSlide = true;
     }
 }
