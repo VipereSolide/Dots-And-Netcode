@@ -20,7 +20,7 @@ using UnityEngine;
 public class GrapplingRope_MLab : MonoBehaviour
 {
     [Header("References")]
-    public Grappling grappling;
+    public SwingingDani grappling;
 
     [Header("Settings")]
     public int quality = 200; // how many segments the rope will be split up in
@@ -52,7 +52,7 @@ public class GrapplingRope_MLab : MonoBehaviour
     void DrawRope()
     {
         // if not grappling, don't draw rope
-        if (!grappling.IsGrappling())
+        if (!grappling.isSwinging)
         {
             currentGrapplePosition = grappling.gunTip.position;
 
@@ -66,8 +66,9 @@ public class GrapplingRope_MLab : MonoBehaviour
             return;
         }
 
-        if(lr.positionCount == 0)
+        if (lr.positionCount == 0)
         {
+            Debug.Log("hello?");
             // set the start velocity of the simulation
             spring.SetVelocity(velocity);
 
@@ -80,7 +81,7 @@ public class GrapplingRope_MLab : MonoBehaviour
         spring.SetStrength(strength);
         spring.Update(Time.deltaTime);
 
-        Vector3 grapplePoint = grappling.GetGrapplePoint();
+        Vector3 grapplePoint = grappling.swingPoint;
         Vector3 gunTipPosition = grappling.gunTip.position;
 
         // find the upwards direction relative to the rope

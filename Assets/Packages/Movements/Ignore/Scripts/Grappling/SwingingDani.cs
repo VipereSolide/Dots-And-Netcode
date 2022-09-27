@@ -5,29 +5,48 @@ using UnityEngine;
 public class SwingingDani : MonoBehaviour
 {
     [Header("References")]
-    public LineRenderer lr;
     public Transform gunTip, cam, player;
+    public Rigidbody rigidbody;
+    public PlayerMovementAdvanced movements;
     public LayerMask whatIsGrappleable;
 
     [Header("Swinging")]
-    private float maxSwingDistance = 25f;
-    private Vector3 swingPoint;
+    public float maxSwingDistance = 25f;
+    public float grapplingCooldown = 1f;
+    public float forwardSpeed;
     private SpringJoint joint;
 
     [Header("Input")]
     public KeyCode swingKey = KeyCode.Mouse0;
 
+    public bool askForSwinging;
+    public bool isSwinging;
+    public Vector3 swingPoint;
+
+    private float grapplingCdTimer;
 
     void Update()
     {
-        if (Input.GetKeyDown(swingKey)) StartSwing();
+        //if (Input.GetKeyDown(swingKey)) StartSwing();
         if (Input.GetKeyUp(swingKey)) StopSwing();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            StartSwing();
+        }
+
+        if (isSwinging && CustomInputManager.GetKey(KeycodeManager.forward))
+        {
+            rigidbody.AddForce(movements.moveDirection.normalized * forwardSpeed * 10f * Time.deltaTime, ForceMode.Impulse);
+        }
+
+        movements.grappling = isSwinging;
     }
 
-    void LateUpdate()
+    /*void LateUpdate()
     {
         DrawRope();
-    }
+    }*/
 
     void StartSwing()
     {
@@ -35,6 +54,8 @@ public class SwingingDani : MonoBehaviour
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxSwingDistance, whatIsGrappleable))
         {
             swingPoint = hit.point;
+            isSwinging = true;
+
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedAnchor = swingPoint;
@@ -50,15 +71,17 @@ public class SwingingDani : MonoBehaviour
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
-            lr.positionCount = 2;
             currentGrapplePosition = gunTip.position;
         }
     }
 
     void StopSwing()
     {
-        lr.positionCount = 0;
         Destroy(joint);
+
+        isSwinging = false;
+        askForSwinging = false;
+        grapplingCdTimer = grapplingCooldown;
     }
 
     private Vector3 currentGrapplePosition;
@@ -69,8 +92,5 @@ public class SwingingDani : MonoBehaviour
         if (!joint) return;
 
         currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, swingPoint, Time.deltaTime * 8f);
-
-        lr.SetPosition(0, gunTip.position);
-        lr.SetPosition(1, currentGrapplePosition);
     }
 }

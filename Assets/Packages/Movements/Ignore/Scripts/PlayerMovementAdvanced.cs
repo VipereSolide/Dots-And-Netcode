@@ -86,6 +86,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool unlimited;
     
     public bool restricted;
+    public bool grappling;
 
     public TextMeshProUGUI text_speed;
     public TextMeshProUGUI text_mode;
@@ -211,6 +212,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             state = MovementState.unlimited;
             desiredMoveSpeed = 999f;
+        }
+
+        else if (grappling)
+        {
+            desiredMoveSpeed = 21f;
         }
 
         // Mode - Vaulting
