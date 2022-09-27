@@ -65935,6 +65935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0862e1b5544fc4bb916c43e2eaf995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoCrouchOffset: 1.19
+  autoUcrouchOffset: 1.2
   keepSpeedInAir: 0
   maxAirSpeed: 0
   walkSpeed: 7

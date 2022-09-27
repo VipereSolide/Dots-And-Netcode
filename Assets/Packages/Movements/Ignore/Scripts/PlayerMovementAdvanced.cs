@@ -6,6 +6,8 @@ using TMPro;
 public class PlayerMovementAdvanced : MonoBehaviour
 {
     [Header("Movement")]
+    public float autoCrouchOffset = 1.999f;
+    public float autoUcrouchOffset = 1.999f;
     public bool keepSpeedInAir;
     public float maxAirSpeed;
     private float moveSpeed;
@@ -174,7 +176,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // start crouch
         bool askForCrouch = (CustomInputManager.GetKeyDown(KeycodeManager.crouch) && state != MovementState.sprinting && !restricted);
-        if (askForCrouch || (spaceAbove < 1.19f && !crouching))
+        if (askForCrouch || (spaceAbove < autoCrouchOffset && !crouching))
         {
             bool wasGrounded = grounded;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -184,7 +186,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // stop crouch
-        if (!CustomInputManager.GetKey(KeycodeManager.crouch) && (spaceAbove > 1.19f && crouching))
+        if (!CustomInputManager.GetKey(KeycodeManager.crouch) && (spaceAbove > autoUcrouchOffset && crouching))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
 
