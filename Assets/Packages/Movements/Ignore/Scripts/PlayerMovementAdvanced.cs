@@ -174,7 +174,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         // start crouch
         bool askForCrouch = (CustomInputManager.GetKeyDown(KeycodeManager.crouch) && state != MovementState.sprinting && !restricted);
-        if (askForCrouch || (spaceAbove < 1.2f && !crouching))
+        if (askForCrouch || (spaceAbove < 1.19f && !crouching))
         {
             bool wasGrounded = grounded;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -184,7 +184,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // stop crouch
-        if (!CustomInputManager.GetKey(KeycodeManager.crouch) && (spaceAbove > 1.2f && crouching))
+        if (!CustomInputManager.GetKey(KeycodeManager.crouch) && (spaceAbove > 1.19f && crouching))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
 
