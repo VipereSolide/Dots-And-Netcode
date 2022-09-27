@@ -132,7 +132,7 @@ public class KeySelector : MonoBehaviour, IPointerClickHandler
         UpdateDisplay();
     }
 
-    private void OnApplicationQuit()
+    private void OnDisable()
     {
         if (saveValue) PlayerPrefs.SetInt(valueTag, (int)heldKey);
     }
