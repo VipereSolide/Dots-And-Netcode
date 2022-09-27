@@ -72,7 +72,7 @@ public class PlayerSlide : MonoBehaviour
         movement.sliding = false;
         movement.restricted = false;
 
-        transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+        if (!movement.crouching) transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
         elapsedSlideTime = 0;
     }
 

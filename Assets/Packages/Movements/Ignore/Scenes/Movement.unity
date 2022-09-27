@@ -65901,7 +65901,7 @@ MonoBehaviour:
   rigidbody: {fileID: 6110090395553680922}
   inputs: {fileID: 6110090395553680924}
   shake: {fileID: 718457510}
-  slidingCameraPosition: -0.5
+  slidingCameraPosition: 0.4
   cameraShakeAmount: 1.8
   cameraShakeCount: 2
   cameraShakeDelay: 0.01
@@ -65956,6 +65956,7 @@ MonoBehaviour:
   sprintKey: 304
   crouchKey: 277
   playerHeight: 2
+  playerWidth: 0.39
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
